@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SbdProjekto.Models.Magazyn>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Magazyny";
 }
 
-<h1>Index</h1>
-
+<h1>Magazyny</h1>
+<hr />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Nowy magazyn</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.KodPocztowy)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MagazynId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MagazynId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MagazynId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MagazynId" class="btn btn-primary">Edytuj</a>
+                <a asp-action="Details" asp-route-id="@item.MagazynId" class="btn btn-primary">Szczegóły</a>
+                <a asp-action="Delete" asp-route-id="@item.MagazynId" class="btn btn-danger">Usuń</a>
             </td>
         </tr>
 }
