@@ -1,0 +1,51 @@
+﻿@model SbdProjekto.Models.Zamowienie
+
+@{
+    ViewData["Title"] = "Usuwanie";
+}
+
+<h1>Usuwanie</h1>
+
+<h3>Czy jesteś pewien?</h3>
+<div>
+    <h4>Zamowienie</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Kurier)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Kurier.Imie) @Html.DisplayFor(model => model.Kurier.Nazwisko)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nadawca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nadawca.Imie) @Html.DisplayFor(model => model.Nadawca.Nazwisko)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Odbiorca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Odbiorca.Imie) @Html.DisplayFor(model => model.Odbiorca.Nazwisko)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataNadania)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataNadania)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataOdbioru)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataOdbioru)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ZamowienieId" />
+        <a asp-action="Index" class="btn btn-primary">Wróć do listy</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" />
+    </form>
+</div>

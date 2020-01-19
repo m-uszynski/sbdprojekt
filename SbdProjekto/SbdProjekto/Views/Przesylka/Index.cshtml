@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SbdProjekto.Models.Przesylka>
+
+@{
+    ViewData["Title"] = "Przesyłki";
+}
+
+<h1>Przesyłki</h1>
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">Nowa przesyłka</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Waga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Szerokosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wysokosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dlugosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Magazyn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RodzajPrzesylki)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zamowienie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Waga)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Szerokosc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wysokosc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dlugosc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Magazyn.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RodzajPrzesylki.Typ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zamowienie.ZamowienieId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PrzesylkaId" class="btn btn-primary">Edytuj</a>
+                <a asp-action="Details" asp-route-id="@item.PrzesylkaId" class="btn btn-primary">Szczegóły</a>
+                <a asp-action="Delete" asp-route-id="@item.PrzesylkaId" class="btn btn-danger">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
