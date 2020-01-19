@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SbdProjekto.Models.Zamowienie>
+
+@{
+    ViewData["Title"] = "Zamówienia";
+}
+
+<h1>Zamówienia</h1>
+
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">Nowe zamówienie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kurier
+            </th>
+            <th>
+                Nadawca
+            </th>
+            <th>
+                Odbiorca
+            </th>
+            <th>
+                Data Nadania
+            </th>
+            <th>
+                Data Odbioru
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kurier.Imie) @Html.DisplayFor(modelItem => item.Kurier.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nadawca.Imie) @Html.DisplayFor(modelItem => item.Nadawca.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odbiorca.Imie) @Html.DisplayFor(modelItem => item.Odbiorca.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNadania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataOdbioru)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ZamowienieId" class="btn btn-primary">Edytuj</a>
+                <a asp-action="Details" asp-route-id="@item.ZamowienieId" class="btn btn-primary">Szczegóły</a>
+                <a asp-action="Delete" asp-route-id="@item.ZamowienieId" class="btn btn-danger">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

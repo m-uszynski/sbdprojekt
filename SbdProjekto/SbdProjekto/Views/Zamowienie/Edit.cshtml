@@ -1,0 +1,51 @@
+﻿@model SbdProjekto.Models.Zamowienie
+
+@{
+    ViewData["Title"] = "Edytowanie";
+}
+
+<h1>Edytowanie</h1>
+
+<h4>Zamowienie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ZamowienieId" />
+            <div class="form-group">
+                <label asp-for="KurierId" class="control-label"></label>
+                <select asp-for="KurierId" class="form-control" asp-items="ViewBag.KurierId"></select>
+                <span asp-validation-for="KurierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NadawcaId" class="control-label"></label>
+                <select asp-for="NadawcaId" class="form-control" asp-items="ViewBag.NadawcaId"></select>
+                <span asp-validation-for="NadawcaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OdbiorcaId" class="control-label"></label>
+                <select asp-for="OdbiorcaId" class="form-control" asp-items="ViewBag.OdbiorcaId"></select>
+                <span asp-validation-for="OdbiorcaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataNadania" class="control-label"></label>
+                <input asp-for="DataNadania" class="form-control" />
+                <span asp-validation-for="DataNadania" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataOdbioru" class="control-label"></label>
+                <input asp-for="DataOdbioru" class="form-control" />
+                <span asp-validation-for="DataOdbioru" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-primary">Wróć do listy</a>
+                <input type="submit" value="Zapisz" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
