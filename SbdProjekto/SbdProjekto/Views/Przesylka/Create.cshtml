@@ -13,36 +13,44 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Waga" class="control-label"></label>
+                <label asp-for="Waga" class="control-label">Waga [kg]</label>
                 <input asp-for="Waga" class="form-control" />
                 <span asp-validation-for="Waga" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Szerokosc" class="control-label"></label>
-                <input asp-for="Szerokosc" class="form-control" />
-                <span asp-validation-for="Szerokosc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Wysokosc" class="control-label"></label>
-                <input asp-for="Wysokosc" class="form-control" />
-                <span asp-validation-for="Wysokosc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dlugosc" class="control-label"></label>
-                <input asp-for="Dlugosc" class="form-control" />
-                <span asp-validation-for="Dlugosc" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Szerokosc" class="control-label">Szerokość [cm]</label>
+                        <input asp-for="Szerokosc" class="form-control" />
+                        <span asp-validation-for="Szerokosc" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Wysokosc" class="control-label">Wysokość [cm]</label>
+                        <input asp-for="Wysokosc" class="form-control" />
+                        <span asp-validation-for="Wysokosc" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Dlugosc" class="control-label">Długość <br />[cm]</label>
+                        <input asp-for="Dlugosc" class="form-control" />
+                        <span asp-validation-for="Dlugosc" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="MagazynId" class="control-label"></label>
-                <select asp-for="MagazynId" class ="form-control" asp-items="ViewBag.MagazynId"></select>
+                <select asp-for="MagazynId" class="form-control" asp-items="ViewBag.MagazynId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="RodzajPrzesylkiId" class="control-label"></label>
-                <select asp-for="RodzajPrzesylkiId" class ="form-control" asp-items="ViewBag.RodzajPrzesylkiId"></select>
+                <select asp-for="RodzajPrzesylkiId" class="form-control" asp-items="ViewBag.RodzajPrzesylkiId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ZamowienieId" class="control-label"></label>
-                <select asp-for="ZamowienieId" class ="form-control" asp-items="ViewBag.ZamowienieId"></select>
+                <select asp-for="ZamowienieId" class="form-control" asp-items="ViewBag.ZamowienieId"></select>
             </div>
             <div class="form-group">
                 <a asp-action="Index" class="btn btn-primary">Wróć do listy</a>
