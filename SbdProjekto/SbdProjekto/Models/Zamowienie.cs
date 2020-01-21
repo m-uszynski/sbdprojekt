@@ -26,7 +26,8 @@ namespace SbdProjekto.Models
         [DisplayName("Data nadania")]
         public DateTime DataNadania { get; set; }
         [DisplayName("Data odbioru")]
-        public DateTime DataOdbioru { get; set; }
+        
+        public DateTime? DataOdbioru { get; set; }
 
 
         public ICollection<Przesylka> Przesylki { get; set; }
