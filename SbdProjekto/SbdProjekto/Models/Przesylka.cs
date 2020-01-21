@@ -17,11 +17,11 @@ namespace SbdProjekto.Models
         public double Wysokosc { get; set; }
         [DisplayName("Długość")]
         public double Dlugosc { get; set; }
-
-        public int MagazynId { get; set; }
         [DisplayName("Nazwa magazynu")]
+        public int MagazynId { get; set; }
+        
         public Magazyn Magazyn { get; set; }
-
+        [DisplayName("Rodzaj przesyłki")]
         public int RodzajPrzesylkiId { get; set; }
         [DisplayName("Rodzaj przesyłki")]
         public RodzajPrzesylki RodzajPrzesylki { get; set; }

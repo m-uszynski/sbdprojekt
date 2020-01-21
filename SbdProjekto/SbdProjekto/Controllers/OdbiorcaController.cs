@@ -19,9 +19,31 @@ namespace SbdProjekto.Controllers
         }
 
         // GET: Odbiorca
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Odbiorcy.ToListAsync());
+
+            List<Odbiorca> recipants;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if (searchString.Contains(" "))
+                {
+                    string[] splittedSearch = searchString.Split(" ");
+                    recipants = await _context.Odbiorcy
+                        .Where(m => (m.Imie.Contains(splittedSearch[0]) && m.Nazwisko.Contains(splittedSearch[1])) || (m.Imie.Contains(splittedSearch[1]) && m.Nazwisko.Contains(splittedSearch[0]))).ToListAsync();
+
+                }
+                else
+                {
+                    recipants = await _context.Odbiorcy.Where(m => (m.Imie.Contains(searchString) || m.Nazwisko.Contains(searchString))).ToListAsync();
+                }
+                ViewBag.Filter = searchString;
+            }
+            else
+            {
+                recipants = await _context.Odbiorcy.ToListAsync();
+            }
+            return View(recipants);
         }
 
         // GET: Odbiorca/Details/5
@@ -40,6 +62,15 @@ namespace SbdProjekto.Controllers
             }
 
             return View(odbiorca);
+        }
+
+        public async Task<IActionResult> Order(int id)
+        {
+            var recipientOrders = _context.Zamowienia.Where(m => m.OdbiorcaId.Equals(id))
+                .Include(m => m.Kurier)
+                .Include(m => m.Odbiorca)
+                .Include(m => m.Nadawca).ToListAsync();
+            return View(await recipientOrders);
         }
 
         // GET: Odbiorca/Create

@@ -20,11 +20,21 @@ namespace SbdProjekto.Controllers
         }
 
         // GET: Rejon
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var rejony = from rej in _context.Rejony
-                         select rej;
-            return View(await rejony.ToListAsync());
+
+            List<Rejon> regions;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                regions = await _context.Rejony.Where(m => m.Nazwa.Contains(searchString)).ToListAsync();
+                ViewBag.Filter = searchString;
+            }
+            else
+            {
+                regions = await _context.Rejony.ToListAsync();
+            }
+            return View(regions);
         }
 
         // GET: Rejon/Details/5

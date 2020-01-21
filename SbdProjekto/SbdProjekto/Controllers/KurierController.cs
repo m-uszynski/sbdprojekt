@@ -20,10 +20,31 @@ namespace SbdProjekto.Controllers
         }
 
         // GET: Kurier
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext =_context.Kurierzy.Include(k => k.Rejon);
-            return View(await applicationDbContext.ToListAsync());
+
+            List<Kurier> couriers;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if(searchString.Contains(" "))
+                {
+                    string[] splittedSearch = searchString.Split(" ");
+                    couriers = await _context.Kurierzy
+                        .Where(m => (m.Imie.Contains(splittedSearch[0]) && m.Nazwisko.Contains(splittedSearch[1])) || (m.Imie.Contains(splittedSearch[1]) && m.Nazwisko.Contains(splittedSearch[0]))).ToListAsync();
+                    
+                }
+                else
+                {
+                    couriers = await _context.Kurierzy.Where(m => (m.Imie.Contains(searchString) || m.Nazwisko.Contains(searchString))).ToListAsync();
+                }
+                ViewBag.Filter = searchString;
+            }
+            else
+            {
+                couriers = await _context.Kurierzy.ToListAsync();
+            }
+            return View(couriers);
         }
 
         // GET: Kurier/Details/5
@@ -43,6 +64,14 @@ namespace SbdProjekto.Controllers
             }
 
             return View(kurier);
+        }
+        public async Task<IActionResult> Order(int id)
+        {
+            var courierOrders = _context.Zamowienia.Where(m => m.KurierId.Equals(id))
+                .Include(m=>m.Kurier)
+                .Include(m=>m.Odbiorca)
+                .Include(m=>m.Nadawca).ToListAsync();
+            return View(await courierOrders);
         }
 
         // GET: Kurier/Create

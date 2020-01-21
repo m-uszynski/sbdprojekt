@@ -19,9 +19,21 @@ namespace SbdProjekto.Controllers
         }
 
         // GET: Magazyn
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Magazyny.ToListAsync());
+            
+            List<Magazyn> magazines;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                magazines = await _context.Magazyny.Where(m => m.Nazwa.Contains(searchString)).ToListAsync();
+                ViewBag.Filter = searchString;
+            }
+            else
+            {
+                magazines = await _context.Magazyny.ToListAsync();
+            }
+            return View(magazines);
         }
 
         // GET: Magazyn/Details/5

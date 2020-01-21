@@ -20,9 +20,9 @@ namespace SbdProjekto.Models
         public string Pesel { get; set; }
         [DisplayName("Numer telefonu")]
         public string Telefon { get; set; }
-
-        public int RejonId { get; set; }
         [DisplayName("Nazwa rejonu")]
+        public int RejonId { get; set; }
+        
         public Rejon Rejon { get; set; }
 
         public ICollection<Zamowienie> Zamowienia { get; set; }

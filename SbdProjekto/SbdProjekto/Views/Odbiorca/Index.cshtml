@@ -9,6 +9,15 @@
 <p>
     <a class="btn btn-success" asp-action="Create">Nowy odbiorca</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Wyszukaj odbiorcę: <input placeholder="Wpisz imię/nazwisko" type="text" name="searchString" value="@ViewBag.Filter" />
+            <input type="submit" value="Szukaj" class="btn btn-warning" />
+            <a class="btn btn-primary" asp-action="Index">Wróć do wszystkich</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -49,8 +58,9 @@
                 @Html.DisplayFor(modelItem => item.KodPocztowy)
             </td>
             <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.OdbiorcaId">Edytuj</a> 
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.OdbiorcaId">Szczegóły</a> 
+                <a class="btn btn-secondary" asp-action="Order" asp-route-id="@item.OdbiorcaId">Zamówienia odbiorcy</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.OdbiorcaId">Edytuj</a>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.OdbiorcaId">Szczegóły</a>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.OdbiorcaId">Usuń</a>
             </td>
         </tr>

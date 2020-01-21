@@ -49,11 +49,11 @@ namespace SbdProjekto.Controllers
         // GET: Przesylka/Create
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> magazyny = _context.Magazyny.Select(x => new SelectListItem { Value = x.MagazynId.ToString(), Text = x.Nazwa });
-            IEnumerable<SelectListItem> rodzajePrzesylek = _context.RodzajePrzesylek.Select(x => new SelectListItem { Value = x.RodzajPrzesylkiId.ToString(), Text = x.Typ});
-
-            ViewData["MagazynId"] = new SelectList(magazyny, "Value", "Text");
-            ViewData["RodzajPrzesylkiId"] = new SelectList(rodzajePrzesylek, "Value", "Text");
+            //IEnumerable<SelectListItem> magazyny = _context.Magazyny.Select(x => new SelectListItem { Value = x.MagazynId.ToString(), Text = x.Nazwa });
+            //IEnumerable<SelectListItem> rodzajePrzesylek = _context.RodzajePrzesylek.Select(x => new SelectListItem { Value = x.RodzajPrzesylkiId.ToString(), Text = x.Typ});
+            
+            ViewData["MagazynId"] = new SelectList(_context.Magazyny, "MagazynId", "Nazwa");
+            ViewData["RodzajPrzesylkiId"] = new SelectList(_context.RodzajePrzesylek, "RodzajPrzesylkiId", "Typ");
             ViewData["ZamowienieId"] = new SelectList(_context.Zamowienia, "ZamowienieId", "ZamowienieId");
             return View();
         }
@@ -74,7 +74,7 @@ namespace SbdProjekto.Controllers
             IEnumerable<SelectListItem> magazyny = _context.Magazyny.Select(x => new SelectListItem { Value = x.MagazynId.ToString(), Text = x.Nazwa });
             IEnumerable<SelectListItem> rodzajePrzesylek = _context.RodzajePrzesylek.Select(x => new SelectListItem { Value = x.RodzajPrzesylkiId.ToString(), Text = x.Typ });
 
-            ViewData["MagazynId"] = new SelectList(magazyny, "Value", "Text");
+            ViewData["MagazynId"] = new SelectList(magazyny, "MagazynId", "Nazwa");
             ViewData["RodzajPrzesylkiId"] = new SelectList(rodzajePrzesylek, "Value", "Text");
             ViewData["ZamowienieId"] = new SelectList(_context.Zamowienia, "ZamowienieId", "ZamowienieId", przesylka.ZamowienieId);
             return View(przesylka);
