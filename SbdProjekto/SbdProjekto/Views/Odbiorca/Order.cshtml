@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SbdProjekto.Models.Zamowienie>
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h1>Zamówienia odbiorcy</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Numer zamówienia
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kurier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nadawca)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DataNadania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataOdbioru)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZamowienieId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kurier.KurierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nadawca.NadawcaId)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNadania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataOdbioru)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

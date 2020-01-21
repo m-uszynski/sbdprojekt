@@ -42,6 +42,15 @@ namespace SbdProjekto.Controllers
             return View(odbiorca);
         }
 
+        public async Task<IActionResult> Order(int id)
+        {
+            var recipientOrders = _context.Zamowienia.Where(m => m.OdbiorcaId.Equals(id))
+                .Include(m => m.Kurier)
+                .Include(m => m.Odbiorca)
+                .Include(m => m.Nadawca).ToListAsync();
+            return View(await recipientOrders);
+        }
+
         // GET: Odbiorca/Create
         public IActionResult Create()
         {

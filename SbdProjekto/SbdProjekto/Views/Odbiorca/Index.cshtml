@@ -49,8 +49,9 @@
                 @Html.DisplayFor(modelItem => item.KodPocztowy)
             </td>
             <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.OdbiorcaId">Edytuj</a> 
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.OdbiorcaId">Szczegóły</a> 
+                <a class="btn btn-secondary" asp-action="Order" asp-route-id="@item.OdbiorcaId">Zamówienia odbiorcy</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.OdbiorcaId">Edytuj</a>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.OdbiorcaId">Szczegóły</a>
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.OdbiorcaId">Usuń</a>
             </td>
         </tr>
