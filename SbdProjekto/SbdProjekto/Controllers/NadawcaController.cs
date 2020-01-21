@@ -19,9 +19,31 @@ namespace SbdProjekto.Controllers
         }
 
         // GET: Nadawca
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Nadawcy.ToListAsync());
+
+            List<Nadawca> senders;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if (searchString.Contains(" "))
+                {
+                    string[] splittedSearch = searchString.Split(" ");
+                    senders = await _context.Nadawcy
+                        .Where(m => (m.Imie.Contains(splittedSearch[0]) && m.Nazwisko.Contains(splittedSearch[1])) || (m.Imie.Contains(splittedSearch[1]) && m.Nazwisko.Contains(splittedSearch[0]))).ToListAsync();
+
+                }
+                else
+                {
+                    senders = await _context.Nadawcy.Where(m => (m.Imie.Contains(searchString) || m.Nazwisko.Contains(searchString))).ToListAsync();
+                }
+                ViewBag.Filter = searchString;
+            }
+            else
+            {
+                senders = await _context.Nadawcy.ToListAsync();
+            }
+            return View(senders);
         }
 
         // GET: Nadawca/Details/5
