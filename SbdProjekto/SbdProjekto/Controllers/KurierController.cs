@@ -31,18 +31,18 @@ namespace SbdProjekto.Controllers
                 {
                     string[] splittedSearch = searchString.Split(" ");
                     couriers = await _context.Kurierzy
-                        .Where(m => (m.Imie.Contains(splittedSearch[0]) && m.Nazwisko.Contains(splittedSearch[1])) || (m.Imie.Contains(splittedSearch[1]) && m.Nazwisko.Contains(splittedSearch[0]))).ToListAsync();
+                        .Where(m => (m.Imie.Contains(splittedSearch[0]) && m.Nazwisko.Contains(splittedSearch[1])) || (m.Imie.Contains(splittedSearch[1]) && m.Nazwisko.Contains(splittedSearch[0]))).Include(r => r.Rejon).ToListAsync();
                     
                 }
                 else
                 {
-                    couriers = await _context.Kurierzy.Where(m => (m.Imie.Contains(searchString) || m.Nazwisko.Contains(searchString))).ToListAsync();
+                    couriers = await _context.Kurierzy.Where(m => (m.Imie.Contains(searchString) || m.Nazwisko.Contains(searchString))).Include(r => r.Rejon).ToListAsync();
                 }
                 ViewBag.Filter = searchString;
             }
             else
             {
-                couriers = await _context.Kurierzy.ToListAsync();
+                couriers = await _context.Kurierzy.Include(r=>r.Rejon).ToListAsync();
             }
             return View(couriers);
         }
@@ -77,7 +77,8 @@ namespace SbdProjekto.Controllers
         // GET: Kurier/Create
         public IActionResult Create()
         {
-            ViewData["RejonId"] = new SelectList(_context.Rejony, "RejonId", "Nazwa","xczcxcz");
+            IEnumerable<SelectListItem> rejony = _context.Rejony.Select(x => new SelectListItem { Value = x.RejonId.ToString(), Text = x.Nazwa });
+            ViewData["RejonId"] = new SelectList(rejony, "Value", "Text");
             return View();
         }
 
@@ -94,7 +95,8 @@ namespace SbdProjekto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RejonId"] = new SelectList(_context.Rejony, "RejonId", "RejonId", kurier.RejonId);
+            IEnumerable<SelectListItem> rejony = _context.Rejony.Select(x => new SelectListItem { Value = x.RejonId.ToString(), Text = x.Nazwa });
+            ViewData["RejonId"] = new SelectList(rejony, "Value", "Text");
             return View(kurier);
         }
 
@@ -111,7 +113,8 @@ namespace SbdProjekto.Controllers
             {
                 return NotFound();
             }
-            ViewData["RejonId"] = new SelectList(_context.Rejony, "RejonId", "RejonId", kurier.RejonId);
+            IEnumerable<SelectListItem> rejony = _context.Rejony.Select(x => new SelectListItem { Value = x.RejonId.ToString(), Text = x.Nazwa });
+            ViewData["RejonId"] = new SelectList(rejony, "Value", "Text");
             return View(kurier);
         }
 
@@ -147,7 +150,8 @@ namespace SbdProjekto.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RejonId"] = new SelectList(_context.Rejony, "RejonId", "RejonId", kurier.RejonId);
+            IEnumerable<SelectListItem> rejony = _context.Rejony.Select(x => new SelectListItem { Value = x.RejonId.ToString(), Text = x.Nazwa });
+            ViewData["RejonId"] = new SelectList(rejony, "Value", "Text");
             return View(kurier);
         }
 

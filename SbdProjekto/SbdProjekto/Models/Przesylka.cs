@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,13 +11,17 @@ namespace SbdProjekto.Models
     {
         public int PrzesylkaId { get; set; }
         [DisplayName("Waga")]
-        public double Waga { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,3})?", ErrorMessage = "Maksymalnie trzy miejsca po przecinku")]
+        public decimal Waga { get; set; }
         [DisplayName("Szerokość")]
-        public double Szerokosc { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Maksymalnie dwa miejsca po przecinku")]
+        public decimal Szerokosc { get; set; }
         [DisplayName("Wysokość")]
-        public double Wysokosc { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Maksymalnie dwa miejsca po przecinku")]
+        public decimal Wysokosc { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Maksymalnie dwa miejsca po przecinku")]
         [DisplayName("Długość")]
-        public double Dlugosc { get; set; }
+        public decimal Dlugosc { get; set; }
         [DisplayName("Nazwa magazynu")]
         public int MagazynId { get; set; }
         

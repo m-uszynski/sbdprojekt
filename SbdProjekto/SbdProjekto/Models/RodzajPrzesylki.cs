@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +15,8 @@ namespace SbdProjekto.Models
         [DisplayName("Typ przesyłki")]
         public string Typ { get; set; }
         [DisplayName("Cena")]
-        public double Cena { get; set; }
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Podaj dwa miejsca po przecinku")]
+        public decimal Cena { get; set; }
 
         public ICollection<Przesylka> Przesylki { get; set; }
 

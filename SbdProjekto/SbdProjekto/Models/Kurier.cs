@@ -19,6 +19,7 @@ namespace SbdProjekto.Models
         [DisplayName("PESEL")]
         public string Pesel { get; set; }
         [DisplayName("Numer telefonu")]
+        [DataType(DataType.PhoneNumber)]
         public string Telefon { get; set; }
         [DisplayName("Nazwa rejonu")]
         public int RejonId { get; set; }
